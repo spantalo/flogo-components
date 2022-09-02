@@ -5,7 +5,7 @@
   "ref": "github.com/spantalo/flogo-components/activity/parseparquet",
   "title": "Parquet File Parser",
   "description": "Parse Parquet into a Flogo Array (Forked from activity created by Andy Hampshire)",
-  "homepage": "https://github.com/spantalo/flogo-components/activity/parseparquet",
+  "homepage": "https://github.com/spantalo/flogo-components/tree/master/activity/parseparquet",
     "author": "Stefano Pantaloni <spantalo@tibco.com>",
   
   "inputs":[
