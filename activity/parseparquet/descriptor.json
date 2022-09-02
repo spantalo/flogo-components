@@ -1,8 +1,8 @@
 {
   "name": "Parquet File Parser",
   "type": "flogo:activity",
-  "version": "0.0.1",
   "ref": "github.com/spantalo/flogo-components/activity/parseparquet",
+  "version": "0.0.1",
   "title": "Parquet File Parser",
   "description": "Parse Parquet into a Flogo Array (Forked from activity created by Andy Hampshire)",
   "homepage": "https://github.com/spantalo/flogo-components/tree/master/activity/parseparquet",
