@@ -1,4 +1,4 @@
-package sample
+package parseparquet
 
 import (
 	"testing"

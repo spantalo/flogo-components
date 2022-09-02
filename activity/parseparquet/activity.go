@@ -1,4 +1,4 @@
-package sample
+package parseparquet
 
 import (
 	"encoding/json"
