@@ -9,17 +9,17 @@
   "homepage": "https://github.com/spantalo/flogo-components/tree/master/activity/parseparquet",
   "inputs":[
     {
-      "name": "parquetFile",
+      "name": "parquetfile",
       "type": "string",
       "required": true
     },
     {
-      "name": "maxRows",
+      "name": "maxrows",
       "type": "integer",
       "required": false
     },
     {
-      "name": "initRow",
+      "name": "initrow",
       "type": "integer",
       "required": false
     }
