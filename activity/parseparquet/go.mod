@@ -1,4 +1,5 @@
-module parseparquet
+//module parseparquet
+module github.com/spantalo/flogo-components/activity/parseparquet
 
 go 1.19
 
