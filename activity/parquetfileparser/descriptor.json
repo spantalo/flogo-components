@@ -1,0 +1,30 @@
+{
+  "name": "parquetfileparser",
+  "author": "Stefano Pantaloni",
+  "type": "flogo:activity",
+  "version": "0.1.0",
+  "title": "parquetfileparser",
+  "description": "parquetfileparser",
+  "homepage": "https://github.com/spantalo/flogo-components/tree/master/activity/parquetfileparser",
+  "input": [
+    {
+      "name": "filename",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "name": "maxrows",
+      "type": "integer"
+    },
+    {
+      "name": "initrow",
+      "type": "integer"
+    }
+  ],
+  "output": [
+    {
+      "name": "result",
+      "type": "string"
+    }
+  ]
+}
