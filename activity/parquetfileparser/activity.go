@@ -40,8 +40,6 @@ func New(ctx activity.InitContext) (activity.Activity, error) {
 func (a *Activity) Eval(ctx activity.Context) (done bool, err error) {
 
 	// Get the runtime values
-	ctx.Logger().Debug("Starting")
-
 	in := &Input{}
 	err = ctx.GetInputObject(in)
 	if err != nil {
@@ -53,7 +51,7 @@ func (a *Activity) Eval(ctx activity.Context) (done bool, err error) {
 	parquetFile := in.ParquetFile
 
 	fmt.Println("Processing file:" + parquetFile)
-	ctx.Logger().Debugf("Processing file: %s, [%s-%s] ", parquetFile, initRow, maxRows)
+	ctx.Logger().Infof("Processing file: %s, [%s-%s] ", parquetFile, initRow, maxRows)
 
 	fr, error := local.NewLocalFileReader(parquetFile)
 	if error != nil {
@@ -81,7 +79,7 @@ func (a *Activity) Eval(ctx activity.Context) (done bool, err error) {
 	output := &Output{}
 	output.Result = string(jsonBs)
 
-	ctx.Logger().Debugf("JSON: %s", output.Result)
+//	ctx.Logger().Debugf("JSON: %s", output.Result)
 
 	//	fmt.Println("JSON:")
 	//	fmt.Println(output.Result)
