@@ -1,0 +1,32 @@
+{
+  "name": "parquetfilewriter",
+  "author": "Stefano Pantaloni",
+  "type": "flogo:activity",
+  "version": "0.1.0",
+  "title": "parquetfilewriter",
+  "description": "parquetfilewriter",
+  "homepage": "https://github.com/spantalo/flogo-components/tree/master/activity/parquetfilewriter",
+  "input": [
+    {
+      "name": "filename",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "name": "jsonstring",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "name": "jsonschema",
+      "required": true,
+      "type": "string"
+    }
+  ],
+  "output": [
+    {
+      "name": "result",
+      "type": "string"
+    }
+  ]
+}

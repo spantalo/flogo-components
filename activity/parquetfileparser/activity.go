@@ -26,9 +26,6 @@ func (a *Activity) Metadata() *activity.Metadata {
 
 // New create a new  activity
 func New(ctx activity.InitContext) (activity.Activity, error) {
-
-	ctx.Logger().Info("In New activity")
-
 	act := &Activity{}
 	return act, nil
 }
@@ -79,7 +76,7 @@ func (a *Activity) Eval(ctx activity.Context) (done bool, err error) {
 	output := &Output{}
 	output.Result = string(jsonBs)
 
-//	ctx.Logger().Debugf("JSON: %s", output.Result)
+	//	ctx.Logger().Debugf("JSON: %s", output.Result)
 
 	//	fmt.Println("JSON:")
 	//	fmt.Println(output.Result)
