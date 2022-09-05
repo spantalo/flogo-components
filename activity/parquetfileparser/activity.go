@@ -66,19 +66,11 @@ func (a *Activity) Eval(ctx activity.Context) (done bool, err error) {
 	}
 
 	num := int(pr.GetNumRows())
-	fmt.Println("33")
-
 	res, error := pr.ReadByNumber(num)
 	if error != nil {
-
-		fmt.Println("error")
-		fmt.Println(error.Error())
-
 		ctx.Logger().Errorf("Read Fail ", error.Error())
 		return false, error
 	}
-
-	fmt.Println("4")
 
 	jsonBs, error := json.Marshal(res)
 	if error != nil {
@@ -86,20 +78,21 @@ func (a *Activity) Eval(ctx activity.Context) (done bool, err error) {
 		return false, error
 	}
 
-	fmt.Println("JSON:")
-	fmt.Println(string(jsonBs))
-
-	pr.ReadStop()
-	fr.Close()
-
 	output := &Output{}
-
 	output.Result = string(jsonBs)
+
+	ctx.Logger().Debugf("JSON: %s", output.Result)
+
+	//	fmt.Println("JSON:")
+	//	fmt.Println(output.Result)
 
 	err = ctx.SetOutputObject(output)
 	if err != nil {
 		return false, err
 	}
+
+	pr.ReadStop()
+	fr.Close()
 
 	return true, nil
 }
