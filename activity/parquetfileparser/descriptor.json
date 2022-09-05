@@ -3,8 +3,8 @@
   "author": "Stefano Pantaloni",
   "type": "flogo:activity",
   "version": "0.1.0",
-  "title": "parquetfileparser",
-  "description": "parquetfileparser",
+  "title": "Parquet file parser",
+  "description": "Parse parquet file to JSON",
   "homepage": "https://github.com/spantalo/flogo-components/tree/master/activity/parquetfileparser",
   "input": [
     {
