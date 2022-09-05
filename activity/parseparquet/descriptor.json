@@ -9,7 +9,7 @@
   "homepage": "https://github.com/spantalo/flogo-components/tree/master/activity/parseparquet",
   "inputs":[
     {
-      "name": "parquetfile",
+      "name": "filename",
       "type": "string",
       "required": true
     },

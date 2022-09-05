@@ -4,59 +4,52 @@ import (
 	"encoding/json"
 	"fmt"
 
-	// do not use, old version
-	// "github.com/project-flogo/core/activity"
-
-	"github.com/TIBCOSoftware/flogo-lib/core/activity"
+	"github.com/project-flogo/core/activity"
+	//"github.com/TIBCOSoftware/flogo-lib/core/activity"
 	"github.com/TIBCOSoftware/flogo-lib/logger"
-
-	//"github.com/segmentio/parquet-go"
 
 	"github.com/xitongsys/parquet-go-source/local"
 	"github.com/xitongsys/parquet-go/reader"
-	//	"github.com/segmentio/parquet-go"
-	//	"github.com/xitongsys/parquet-go-source/local"
-	//	"github.com/xitongsys/parquet-go/parquet"
-	//	"github.com/xitongsys/parquet-go/reader"
-	//	"github.com/xitongsys/parquet-go/writer"
 )
 
 // ActivityLog is the default logger for the Log Activity
 var activityLog = logger.GetLogger("activity-flogo-parseparquet")
 
+/*
 const (
-	ivinitRow     = "initRow"
-	ivmaxRows     = "maxRows"
-	ivparquetFile = "parquetFile"
+	ivinitRow     = "initrow"
+	ivmaxRows     = "maxrows"
+	ivparquetFile = "parquetfile"
 	ovOutput      = "output"
-)
+)*/
 
 // ParseCSVActivity is a stub for your Activity implementation
-type ParseParquetActivity struct {
-	metadata *activity.Metadata
+type Activity struct {
 }
 
-// NewActivity creates a new activity
-func NewActivity(metadata *activity.Metadata) activity.Activity {
-	return &ParseParquetActivity{metadata: metadata}
+func init() {
+	_ = activity.Register(&Activity{}, New)
 }
 
-// Metadata implements activity.Activity.Metadata
-func (a *ParseParquetActivity) Metadata() *activity.Metadata {
-	return a.metadata
+var activityMd = activity.ToMetadata(&Input{}, &Output{})
+
+// Metadata returns the activity's metadata
+func (a *Activity) Metadata() *activity.Metadata {
+	return activityMd
 }
 
-type RowType struct {
-	FirstName string
-	LastName  string
+// New create a new  activity
+func New(ctx activity.InitContext) (activity.Activity, error) {
+	act := &Activity{}
+	return act, nil
 }
 
 // Eval implements activity.Activity.Eval
-func (a *ParseParquetActivity) Eval(ctx activity.Context) (done bool, err error) {
+func (a *Activity) Eval(ctx activity.Context) (done bool, err error) {
 
-	initRow := ctx.GetInput(ivinitRow).(int)
-	maxRows := ctx.GetInput(ivmaxRows).(int)
-	parquetFile := ctx.GetInput(ivparquetFile).(string)
+	initRow := ctx.GetInput("initrow").(int)
+	maxRows := ctx.GetInput("maxrows").(int)
+	parquetFile := ctx.GetInput("filename").(string)
 
 	activityLog.Debugf("Processing file: %s, [%s-%s] ", parquetFile, initRow, maxRows)
 
@@ -97,7 +90,13 @@ func (a *ParseParquetActivity) Eval(ctx activity.Context) (done bool, err error)
 	pr.ReadStop()
 	fr.Close()
 
-	ctx.SetOutput(ovOutput, string(jsonBs))
+	output := &Output{}
+	output.Output = string(jsonBs)
+
+	err = ctx.SetOutputObject(output)
+	if err != nil {
+		return false, err
+	}
 
 	return true, nil
 

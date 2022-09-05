@@ -16,14 +16,13 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-/*
 func TestRegister(t *testing.T) {
 
 	ref := activity.GetRef(&ParseParquetActivity{})
 	act := activity.Get(ref)
 
 	assert.NotNil(t, act)
-} */
+}
 
 var activityMetadata *activity.Metadata
 
@@ -56,7 +55,7 @@ func TestEval(t *testing.T) {
 
 	act := NewActivity(getActivityMetadata())
 	tc := test.NewTestActivityContext(getActivityMetadata())
-	tc.SetInput("parquetFile", "/tmp/file.parquet")
+	tc.SetInput("filename", "file.parquet")
 	tc.SetInput("maxRows", 1000)
 	tc.SetInput("initRow", 0)
 
