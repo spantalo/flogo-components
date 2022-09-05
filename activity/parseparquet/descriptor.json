@@ -1,31 +1,27 @@
 {
-  "name": "Parquet File Parser",
-  "type": "flogo:activity",
-  "ref": "github.com/spantalo/flogo-components/activity/parseparquet",
-  "version": "0.0.1",
-  "title": "Parquet File Parser",
-  "description": "Parse Parquet into a Flogo Array (Forked from activity created by Andy Hampshire)",
+  "name": "parseparquet",
   "author": "Stefano Pantaloni <spantalo@tibco.com>",
+  "type": "flogo:activity",
+  "version": "0.1.0",
+  "title": "parseparquet",
+  "description": "Parse Parquet into a JSON String (Forked from activity created by Andy Hampshire)",
   "homepage": "https://github.com/spantalo/flogo-components/tree/master/activity/parseparquet",
-  "inputs":[
+  "input": [
     {
       "name": "filename",
-      "type": "string",
-      "required": true
+      "required": true,
+      "type": "string"
     },
     {
       "name": "maxrows",
-      "type": "integer",
-      "required": false
+      "type": "integer"
     },
     {
       "name": "initrow",
-      "type": "integer",
-      "required": false
+      "type": "integer"
     }
   ],
-  
-  "outputs": [
+  "output": [
     {
       "name": "output",
       "type": "string"
