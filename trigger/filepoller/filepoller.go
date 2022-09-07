@@ -225,7 +225,10 @@ func (t *Trigger) scheduleRepeating(handler trigger.Handler, settings *HandlerSe
 			return
 		}
 
-		_, err = handler.Handle(context.Background(), matches)
+		trgData := make(map[string]interface{})
+		trgData["result"] = matches
+
+		_, err = handler.Handle(context.Background(), trgData)
 		if err != nil {
 			t.logger.Error("Error running handler: ", err.Error())
 		}

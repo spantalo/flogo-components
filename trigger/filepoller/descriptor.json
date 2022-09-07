@@ -35,7 +35,7 @@
   "output": [
     {
       "name": "result",
-      "type": "object"
+      "type": "object" 
 
     }
   ]
