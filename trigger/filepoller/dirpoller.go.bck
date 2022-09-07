@@ -1,0 +1,77 @@
+package filepoller
+
+import (
+	"fmt"
+	"os"
+	"path/filepath"
+	"time"
+)
+
+func main() {
+
+	//	pattern := "/tmp/W3/LOCATION/????????-*/*.parquet"
+
+	matches, err := WalkMatch("/tmp/W3/LOCATION/", "/tmp/W3/LOCATION/????????-*/*.parquet")
+
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	fmt.Println(matches[1].AbsPath + "-" + fmt.Sprint(matches[1].Size))
+
+	/* 	return
+
+	   	// you can specify directly the directory you want to search as well with the pattern
+	   	// for example, /usr/files/*input*
+
+	   	matches, err := filepath.Glob(pattern)
+
+	   	if err != nil {
+	   		fmt.Println(err)
+	   		return
+	   	}
+
+	   	for _, match := range matches {
+
+	   		fmt.Printf("match: %v\n", match)
+	   	} */
+
+}
+
+type PolledFile struct {
+	AbsPath string
+	Name    string
+	Size    int64
+	ModTime time.Time
+	IsDir   bool
+}
+
+func WalkMatch(root, pattern string) ([]PolledFile, error) {
+	var matches []PolledFile
+	err := filepath.Walk(root, func(path string, info os.FileInfo, err error) error {
+		if err != nil {
+			return err
+		}
+		if info.IsDir() {
+			return nil
+		}
+
+		if matched, err := filepath.Match(pattern, path); err != nil {
+			return err
+		} else if matched {
+			matches = append(matches, PolledFile{
+				path,
+				info.Name(),
+				info.Size(),
+				info.ModTime(),
+				info.IsDir(),
+			})
+		}
+		return nil
+	})
+	if err != nil {
+		return nil, err
+	}
+	return matches, nil
+}
