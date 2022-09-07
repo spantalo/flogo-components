@@ -4,8 +4,8 @@
   "shim": "main",
   "version": "0.10.0",
   "title": "CLI Trigger",
-  "description": "Simple CLI Trigger",
-  "homepage": "https://github.com/project-flogo/contrib/tree/master/trigger/cli",
+  "description": "Simple CLI Trigger forked from https://github.com/spantalo/flogo-components/tree/main/trigger/cli",
+  "homepage": "https://github.com/spantalo/flogo-components/tree/main/trigger/cli",
   "settings": [
     {
       "name": "singleCmd",
