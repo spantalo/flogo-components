@@ -1,0 +1,69 @@
+{
+  "name": "flogo-cli",
+  "type": "flogo:trigger",
+  "shim": "main",
+  "version": "0.10.0",
+  "title": "CLI Trigger",
+  "description": "Simple CLI Trigger",
+  "homepage": "https://github.com/project-flogo/contrib/tree/master/trigger/cli",
+  "settings": [
+    {
+      "name": "singleCmd",
+      "type": "bool",
+      "description": "Indicates that this CLI runs only one command/handler"
+    },
+    {
+      "name": "usage",
+      "type": "string",
+      "description": "The usage details of the CLI"
+    },
+    {
+      "name": "long",
+      "type": "string",
+      "description": "The description of the CLI"
+    }
+  ],
+  "handler": {
+    "settings": [
+      {
+        "name": "flags",
+        "type": "array",
+        "description": ""
+      },
+      {
+        "name": "usage",
+        "type": "string",
+        "description": "The usage details of the command"
+      },
+      {
+        "name": "short",
+        "type": "string",
+        "description": "A short description of the command"
+      },
+      {
+        "name": "long",
+        "type": "string",
+        "description": "The description of the command"
+      }
+    ]
+  },
+  "output": [
+    {
+      "name": "args",
+      "type": "array",
+      "description": "An array of the command line arguments"
+    },
+    {
+      "name": "flags",
+      "type": "map",
+      "description": "A map of the command line flags"
+    }
+  ],
+  "reply": [
+    {
+      "name": "data",
+      "type": "any",
+      "description": "The data that the command outputs"
+    }
+  ]
+}
