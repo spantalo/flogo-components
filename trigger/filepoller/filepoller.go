@@ -151,11 +151,15 @@ func (t *Trigger) scheduleOnce(handler trigger.Handler, settings *HandlerSetting
 	return nil
 }
 
-func WalkMatch(root, pattern string) ([]PolledFile, error) {
+func WalkMatch(root, pattern string, t *Trigger) ([]PolledFile, error) {
 	var matches []PolledFile
 	err := filepath.Walk(root, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
-			return err
+			//return err
+
+			t.logger.Error("error:" + err.Error())
+			return nil
+
 		}
 		if info.IsDir() {
 			return nil
@@ -207,7 +211,7 @@ func (t *Trigger) scheduleRepeating(handler trigger.Handler, settings *HandlerSe
 		t.logger.Debug("Executing \"Repeating\" timer")
 
 		// execute find
-		matches, err := WalkMatch(settings.RootFolder, settings.FilePattern)
+		matches, err := WalkMatch(settings.RootFolder, settings.FilePattern, t)
 
 		if err != nil {
 			t.logger.Error("Error running WalkMatch: ", err.Error())

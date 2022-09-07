@@ -1,4 +1,4 @@
-package filepoller
+package main
 
 import (
 	"fmt"
@@ -9,13 +9,17 @@ import (
 
 func main() {
 
-	//	pattern := "/tmp/W3/LOCATION/????????-*/*.parquet"
+	root := "/tmp/W3/LOCATION/"
+	pattern := "/tmp/W3/LOCATION/????????-*/*.parquet"
 
-	matches, err := WalkMatch("/tmp/W3/LOCATION/", "/tmp/W3/LOCATION/????????-*/*.parquet")
+	root = "/"
+	pattern = "/*"
+
+	matches, err := WalkMatch(root, pattern)
 
 	if err != nil {
 		fmt.Println(err)
-		return
+		//return
 	}
 
 	fmt.Println(matches[1].AbsPath + "-" + fmt.Sprint(matches[1].Size))
@@ -51,7 +55,9 @@ func WalkMatch(root, pattern string) ([]PolledFile, error) {
 	var matches []PolledFile
 	err := filepath.Walk(root, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
-			return err
+			fmt.Println("error:" + err.Error())
+
+			return nil
 		}
 		if info.IsDir() {
 			return nil
@@ -60,6 +66,7 @@ func WalkMatch(root, pattern string) ([]PolledFile, error) {
 		if matched, err := filepath.Match(pattern, path); err != nil {
 			return err
 		} else if matched {
+			fmt.Println("Matched:" + info.Name())
 			matches = append(matches, PolledFile{
 				path,
 				info.Name(),
