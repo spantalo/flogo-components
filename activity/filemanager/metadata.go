@@ -7,7 +7,7 @@ type Settings struct {
 }
 
 type Input struct {
-	File string `md:"file,required,allowed(COPY, MOVE, LIST, DELETE)"`
+	File string `md:"file,required,allowed(COPY, MOVE, LIST, DELETE, MKDIR)"`
 	To   string `md:"to"`
 }
 
