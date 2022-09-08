@@ -158,6 +158,17 @@ func (a *Activity) Eval(ctx activity.Context) (done bool, err error) {
 			break
 		}
 		output.Result = "OK"
+
+	case "MKDIR":
+		err := os.MkdirAll(file, 0660)
+		if err != nil {
+			a.logger.Errorf("Cannot %s file %s error:", action, file, err.Error())
+			output.Result = "KO"
+			output.Error = err.Error()
+			break
+		}
+		output.Result = "OK"
+
 	}
 
 	err = ctx.SetOutputObject(output)

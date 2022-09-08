@@ -12,8 +12,8 @@
     {
       "name": "action",
       "type": "string",
-      "description" : "Action to be executed: COPY, MOVE, LIST, DELETE",
-      "allowed": [ "COPY", "MOVE", "LIST", "DELETE" ],
+      "description" : "Action to be executed: COPY, MOVE, LIST, DELETE, MKDIR",
+      "allowed": [ "COPY", "MOVE", "LIST", "DELETE", "MKDIR" ],
       "required": "true"
     }
   ],
