@@ -3,7 +3,7 @@
   "author": "Stefano Pantaloni",
   "type": "flogo:activity",
   "version": "0.1.0",
-  "title": "Manage files copy/move/list/delete",
+  "title": "File copy move list delete",
   "description": "Manage files",
   "homepage": "https://github.com/spantalo/flogo-components/tree/master/activity/filemanager",
 
