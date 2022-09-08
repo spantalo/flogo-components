@@ -1,0 +1,52 @@
+{
+  "name": "filemanager",
+  "author": "Stefano Pantaloni",
+  "type": "flogo:activity",
+  "version": "0.1.0",
+  "title": "Manage files copy/move/list/delete",
+  "description": "Manage files",
+  "homepage": "https://github.com/spantalo/flogo-components/tree/master/activity/filemanager",
+
+  "settings": [
+    {
+      "name": "action",
+      "type": "string",
+      "description" : "Action to be executed: COPY, MOVE, LIST, DELETE",
+      "allowed": [ "COPY", "MOVE", "LIST", "DELETE" ],
+      "required": "true"
+    }
+  ],
+
+  "input": [
+    {
+      "name": "file",
+      "type": "string",
+      "description" : "File/dir name",
+      "required": "true"
+    },
+    {
+      "name": "to",
+      "type": "string",
+      "description" : "Optional target file/dir",
+      "required": "false"
+    } 
+  ],
+  "output": [
+    {
+      "name": "result",
+      "description" : "The result of the action.",
+      "required": "true",
+      "type": "string"
+    },     
+    {
+      "name": "error",
+      "description" : "Error.",
+      "type": "string"
+    },    
+    {
+      "name": "files",
+      "description" : "The list of files.",
+      "type": "object"
+    }
+  ]
+}

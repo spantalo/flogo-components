@@ -1,11 +1,11 @@
 {
-  "name": "filepoller",
+  "name": "app",
   "author": "Stefano Pantaloni",
   "type": "flogo:trigger",
   "version": "0.1.0",
-  "title": "FilePoller",
-  "description": "Simple File poller trigger",
-  "homepage": "https://github.com/spantalo/flogo-components/tree/master/trigger/filepoller",
+  "title": "app",
+  "description": "Simple app trigger with command line parameters",
+  "homepage": "https://github.com/spantalo/flogo-components/tree/master/trigger/app",
   "handler": {
     "settings": [
       {
