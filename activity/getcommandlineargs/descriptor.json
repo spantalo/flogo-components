@@ -1,0 +1,17 @@
+{
+  "name": "getcommandlineargs",
+  "author": "Stefano Pantaloni",
+  "type": "flogo:activity",
+  "version": "0.1.0",
+  "title": "Get command line args",
+  "description": "Get command line args",
+  "homepage": "https://github.com/spantalo/flogo-components/tree/master/activity/getcommandlineargs",
+  "input": [
+  ],
+  "output": [
+    {
+      "name": "args",
+      "type": "array"
+    }
+  ]
+}

@@ -1,17 +1,13 @@
-package parseparquet
+package getcommandlineargs
 
 import (
-	"testing"
-
-	"encoding/json"
 	"fmt"
+	"testing"
 
 	"github.com/project-flogo/core/activity"
 	"github.com/project-flogo/core/support/test"
 	"github.com/stretchr/testify/assert"
 )
-
-var activityMetadata *activity.Metadata
 
 func TestRegister(t *testing.T) {
 
@@ -33,10 +29,6 @@ func TestEval(t *testing.T) {
 	act := &Activity{}
 	tc := test.NewActivityContext(act.Metadata())
 
-	tc.SetInput("filename", "file.parquet")
-	tc.SetInput("maxRows", 1000)
-	tc.SetInput("initRow", 0)
-
 	done, err := act.Eval(tc)
 	assert.True(t, done)
 	assert.Nil(t, err)
@@ -46,6 +38,5 @@ func TestEval(t *testing.T) {
 	err = tc.GetOutputObject(aOutput)
 	assert.Nil(t, err)
 
-	b, _ := json.Marshal(aOutput.Output)
-	fmt.Println(string(b))
+	fmt.Println(aOutput.Args)
 }

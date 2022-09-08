@@ -1,0 +1,42 @@
+{
+  "name": "filepoller",
+  "author": "Stefano Pantaloni",
+  "type": "flogo:trigger",
+  "version": "0.1.0",
+  "title": "FilePoller",
+  "description": "Simple File poller trigger",
+  "homepage": "https://github.com/spantalo/flogo-components/tree/master/trigger/filepoller",
+  "handler": {
+    "settings": [
+      {
+        "name": "startDelay",
+        "type": "string",
+        "description": "The start delay (ex. 1m, 1h, etc.), immediate if not specified"
+      },
+      {
+        "name": "repeatInterval",
+        "type": "string",
+        "description": "The repeat interval (ex. 1m, 1h, etc.), doesn't repeat if not specified"
+      },
+      {
+        "name": "rootFolder",
+        "type": "string",
+        "required": true,
+        "description": "The root folder where trigger searches for files. eg. /tmp/STEP/LOCATION"
+      },
+      {
+        "name": "filePattern",
+        "type": "string",
+        "required": true,
+        "description": "The complete file pattern (including root folder, wildcards are supported). eg /tmp/STEP/LOCATION/????????-*/*.txt"
+      }
+    ]
+  },
+  "output": [
+    {
+      "name": "result",
+      "type": "object" 
+
+    }
+  ]
+}
