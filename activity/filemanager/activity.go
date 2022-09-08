@@ -15,10 +15,9 @@ type Activity struct {
 	logger   log.Logger
 }
 
-/*
 func init() {
 	_ = activity.Register(&Activity{}, New)
-}*/
+}
 
 type ListFile struct {
 	Name    string
