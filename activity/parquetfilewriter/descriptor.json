@@ -3,7 +3,7 @@
   "author": "Stefano Pantaloni",
   "type": "flogo:activity",
   "version": "0.1.0",
-  "title": "parquetfilewriter",
+  "title": "Parquet file writer",
   "description": "parquetfilewriter",
   "homepage": "https://github.com/spantalo/flogo-components/tree/master/activity/parquetfilewriter",
   "input": [
