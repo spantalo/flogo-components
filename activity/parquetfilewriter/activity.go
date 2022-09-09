@@ -4,8 +4,12 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/project-flogo/core/activity"
-	"github.com/project-flogo/core/data"
+	//"github.com/project-flogo/core/activity"
+	//"github.com/project-flogo/core/data"
+
+	"github.com/TIBCOSoftware/flogo-lib/core/activity"
+	"github.com/TIBCOSoftware/flogo-lib/core/data"
+
 	"github.com/xitongsys/parquet-go-source/local"
 	"github.com/xitongsys/parquet-go/writer"
 )
