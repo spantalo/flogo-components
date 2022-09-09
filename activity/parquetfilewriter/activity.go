@@ -19,7 +19,7 @@ var log = logger.GetLogger("flogo-parquet-filewriter")
 var versionPrinted = false
 
 // PutActivity is a stub for your Activity implementation
-type FileWriterActivity struct {
+type ParquetFileWriterActivity struct {
 	metadata *activity.Metadata
 }
 
@@ -28,16 +28,16 @@ func NewActivity(metadata *activity.Metadata) activity.Activity {
 	//TODO REMOVE
 	//log.SetLogLevel(logger.DebugLevel)
 	//
-	return &FileWriterActivity{metadata: metadata}
+	return &ParquetFileWriterActivity{metadata: metadata}
 }
 
 // Metadata implements activity.Activity.Metadata
-func (a *FileWriterActivity) Metadata() *activity.Metadata {
+func (a *ParquetFileWriterActivity) Metadata() *activity.Metadata {
 	return a.metadata
 }
 
 // Eval implements activity.Activity.Eval
-func (a *FileWriterActivity) Eval(ctx activity.Context) (done bool, err error) {
+func (a *ParquetFileWriterActivity) Eval(ctx activity.Context) (done bool, err error) {
 
 	// Get the runtime values
 	jsonSchema := ctx.GetInput("jsonschema").(string)
@@ -50,7 +50,7 @@ func (a *FileWriterActivity) Eval(ctx activity.Context) (done bool, err error) {
 		buffer, err := json.Marshal(messageJSONObj.Value)
 		if err != nil {
 			log.Errorf("Failed to decode map input for reason [%s]", err)
-			return false, fmt.Errorf("Failed to decode map input for reason [%s]", err)
+			return false, fmt.Errorf("failed to decode map input for reason [%s]", err)
 		}
 		jsonString = string(buffer)
 	}
