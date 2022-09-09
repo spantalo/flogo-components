@@ -86,7 +86,7 @@ func (a *FileWriterActivity) Eval(ctx activity.Context) (done bool, err error) {
 
 	log.Infof("File completed %s", parquetFile)
 
-	err = ctx.SetOutput("result", "OK")
+	ctx.SetOutput("result", "OK")
 
 	if err != nil {
 		return false, err
