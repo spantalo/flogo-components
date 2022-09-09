@@ -31,7 +31,7 @@
         "description": "The JSON schema for the file content",
         "type": "texteditor",
         "syntax": "json",
-        "visible": false,
+        "visible": true,
         "mappable": true
       }
     },
