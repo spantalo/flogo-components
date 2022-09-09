@@ -21,6 +21,30 @@
       "name": "jsonschema",
       "required": true,
       "type": "string"
+    },
+    {
+      "name": "ContentJson",
+      "type": "complex_object",
+      "required": true,
+      "display": {
+        "name": "Schema for JSON Content",
+        "description": "The JSON schema for the file content",
+        "type": "texteditor",
+        "syntax": "json",
+        "visible": false,
+        "mappable": true
+      }
+    },
+    {
+      "name": "properties",
+      "type": "complex_object",
+      "display": {
+        "name": "Columns",
+        "description": "File columns",
+        "type": "params",
+        "mappable": true,
+        "schema": "{    \"type\": \"array\",    \"items\": {        \"type\": \"object\",        \"properties\": {            \"columnName\": {                \"type\": \"string\"            },                       \"type\": {                \"type\": {                    \"enum\": [                        \"BYTE_ARRAY\", \"INT32\", \"INT64\", \"BOOLEAN\", \"FLOAT\", \"DOUBLE\"                    ]                }            }        }    }}"
+      }
     }
   ],
   "output": [

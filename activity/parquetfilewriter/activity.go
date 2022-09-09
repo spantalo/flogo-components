@@ -1,6 +1,7 @@
 package parquetfilewriter
 
 import (
+	"encoding/json"
 	"fmt"
 
 	"github.com/project-flogo/core/activity"
@@ -32,6 +33,8 @@ func New(ctx activity.InitContext) (activity.Activity, error) {
 // Eval implements activity.Activity.Eval
 func (a *Activity) Eval(ctx activity.Context) (done bool, err error) {
 
+	ctx.Logger().Infof("Processing file: %s", parquetFile)
+
 	// Get the runtime values
 	in := &Input{}
 	err = ctx.GetInputObject(in)
@@ -43,7 +46,15 @@ func (a *Activity) Eval(ctx activity.Context) (done bool, err error) {
 	jsonString := in.JSONString
 	parquetFile := in.ParquetFile
 
-	ctx.Logger().Infof("Processing file: %s", parquetFile)
+	if ctx.GetInput("ContentJson") != nil {
+		messageJSONObj := ctx.GetInput("ContentJson").(*data.ComplexObject)
+		buffer, err := json.Marshal(messageJSONObj.Value)
+		if err != nil {
+			ctx.Logger().Errorf("Failed to decode map input for reason [%s]", err)
+			return false, fmt.Errorf("Failed to decode map input for reason [%s]", err)
+		}
+		jsonString = string(buffer)
+	}
 
 	//--
 
@@ -65,19 +76,14 @@ func (a *Activity) Eval(ctx activity.Context) (done bool, err error) {
 		ctx.Logger().Errorf("Write file Error %s", err)
 	}
 
-	fmt.Println(">>>>1")
-	fmt.Println(jsonSchema)
-	fmt.Println(jsonString)
+	//ctx.Logger().Debugf("jsonSchema %s", jsonSchema)
+	//ctx.Logger().Debugf("jsonString %s", jsonString)
 
 	if err = pw.WriteStop(); err != nil {
 		ctx.Logger().Errorf("Close file Error %s", err)
 	}
 
-	fmt.Println(">>>>2")
-
 	fw.Close()
-
-	fmt.Println(">>>>3")
 
 	ctx.Logger().Infof("File completed %s", parquetFile)
 

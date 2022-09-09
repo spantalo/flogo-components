@@ -14,7 +14,7 @@
       "type": "string",
       "description" : "Action to be executed: COPY, MOVE, LIST, DELETE, MKDIR",
       "allowed": [ "COPY", "MOVE", "LIST", "DELETE", "MKDIR" ],
-      "required": "true"
+      "required": true
     }
   ],
 
@@ -23,7 +23,7 @@
       "name": "file",
       "type": "string",
       "description" : "File/dir name",
-      "required": "true"
+      "required": true
     },
     {
       "name": "to",
@@ -36,7 +36,7 @@
     {
       "name": "result",
       "description" : "The result of the action.",
-      "required": "true",
+      "required": true,
       "type": "string"
     },     
     {
