@@ -56,6 +56,9 @@ func (a *Activity) Eval(ctx activity.Context) (done bool, err error) {
 		jsonString = string(buffer)
 	}
 
+	//ctx.Logger().Debugf("jsonSchema %s", jsonSchema)
+	ctx.Logger().Infof("jsonString: %s", jsonString)
+
 	//--
 
 	//write
@@ -75,9 +78,6 @@ func (a *Activity) Eval(ctx activity.Context) (done bool, err error) {
 	if err = pw.Write(jsonString); err != nil {
 		ctx.Logger().Errorf("Write file Error %s", err)
 	}
-
-	//ctx.Logger().Debugf("jsonSchema %s", jsonSchema)
-	//ctx.Logger().Debugf("jsonString %s", jsonString)
 
 	if err = pw.WriteStop(); err != nil {
 		ctx.Logger().Errorf("Close file Error %s", err)
