@@ -16,7 +16,6 @@ import (
 )
 
 var log = logger.GetLogger("flogo-parquet-filewriter")
-var versionPrinted = false
 
 // PutActivity is a stub for your Activity implementation
 type ParquetFileWriterActivity struct {
@@ -41,22 +40,27 @@ func (a *ParquetFileWriterActivity) Eval(ctx activity.Context) (done bool, err e
 
 	// Get the runtime values
 	jsonSchema := ctx.GetInput("jsonschema").(string)
-	jsonString := ctx.GetInput("jsonstring").(string)
+	jsonString := "-" //ctx.GetInput("jsonstring").(string)
 	parquetFile := ctx.GetInput("filename").(string)
-	log.Infof("Processing file: %s", parquetFile)
+	log.Infof("### Processing file: %s", parquetFile)
 
 	if ctx.GetInput("ContentJson") != nil {
 		messageJSONObj := ctx.GetInput("ContentJson").(*data.ComplexObject)
+		log.Infof("### messageJSONObj Val: %s", messageJSONObj.Value)
+		log.Infof("### messageJSONObj Schema: %s", messageJSONObj.Metadata)
+
 		buffer, err := json.Marshal(messageJSONObj.Value)
 		if err != nil {
 			log.Errorf("Failed to decode map input for reason [%s]", err)
 			return false, fmt.Errorf("failed to decode map input for reason [%s]", err)
 		}
+		log.Infof("### Buffer: %s", buffer)
 		jsonString = string(buffer)
+
 	}
 
 	//log.Debugf("jsonSchema %s", jsonSchema)
-	log.Infof("jsonString: %s", jsonString)
+	log.Infof("### jsonString: %s", jsonString)
 
 	//--
 

@@ -5,7 +5,7 @@
   "version": "0.1.0",
   "title": "Parquet file writer",
   "description": "parquetfilewriter",
-  "homepage": "https://github.com/spantalo/flogo-components/tree/master/activity/parquetfilewriter",
+  "ref": "github.com/spantalo/flogo-components/activity/parquetfilewriter",
   "input": [
     {
       "name": "filename",
