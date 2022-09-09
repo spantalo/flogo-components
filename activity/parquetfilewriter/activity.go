@@ -5,6 +5,7 @@ import (
 	"fmt"
 
 	"github.com/project-flogo/core/activity"
+	"github.com/project-flogo/core/data"
 	"github.com/xitongsys/parquet-go-source/local"
 	"github.com/xitongsys/parquet-go/writer"
 )
