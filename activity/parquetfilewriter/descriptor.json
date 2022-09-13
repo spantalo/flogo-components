@@ -13,15 +13,44 @@
       "type": "string"
     },
     {
-      "name": "jsonstring",
-      "required": true,
-      "type": "string"
+      "name": "CompressionType",
+      "required": false,
+      "type": "string",
+      "allowed": ["UNCOMPRESSED","SNAPPY","GZIP","LZ4","ZSTD"],
+      "value": "SNAPPY"
     },
+
     {
-      "name": "jsonschema",
+      "name": "FileColumns",
+      "type": "array",
+      "display": {
+        "name": "File Columns",
+        "description": "File Columns",
+        "type": "table",
+        "mappable": false,
+        "visible" : true,
+        "inputSettingsOnly":true,
+        "schema": "{    \"$schema\": \"http:\/\/json-schema.org\/draft-04\/schema#\",    \"definitions\": {},    \"id\": \"http:\/\/example.com\/example.json\",    \"items\": {        \"id\": \"\/items\",        \"properties\": {            \"Name\": {                \"id\": \"\/items\/properties\/Name\",                \"type\": \"string\"            },            \"Type\": {                \"id\": \"\/items\/properties\/Type\",                \"type\": \"string\",                \"allowed\":[ \"BYTE_ARRAY\", \"INT32\", \"INT64\", \"BOOLEAN\", \"FLOAT\", \"DOUBLE\"                    ],                \"value\": \"BYTE_ARRAY\"            }        },        \"type\": \"object\"    },    \"type\": \"array\"}"
+      }
+    },
+
+    {
+      "name": "FileContent",
+      "type": "object",
       "required": true,
-      "type": "string"
+      "display": {
+        "name": "File Content",
+        "description": "File Conent",
+        "type": "texteditor",
+        "syntax": "json",
+        "inputSettingsOnly":false,
+        "mappable": true,
+        "visible": true
+      }
     }
+
+
+
   ],
   "output": [
     {

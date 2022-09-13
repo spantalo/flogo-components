@@ -6,16 +6,21 @@ type Settings struct {
 }
 
 type Input struct {
-	ParquetFile string `md:"filename,required"`
-	JSONString  string `md:"jsonstring,required"`
-	JSONSchema  string `md:"jsonschema"` //,required
+	ParquetFile     string        `md:"filename,required"`
+	CompressionType string        `md:"CompressionType,required"`
+	FileColumns     []interface{} `md:"FileColumns,required"`
+	FileContent     []interface{} `md:"FileContent,required"`
+
+	//FileContent object like: {map[string]interface {}{"CELL_ID":"64A2D87"}, map[string]interface {}{"CELL_ID":"BBB2-75A5"},...
+
 }
 
 func (r *Input) ToMap() map[string]interface{} {
 	return map[string]interface{}{
-		"filename":   r.ParquetFile,
-		"jsonstring": r.JSONString,
-		"jsonschema": r.JSONSchema,
+		"filename":        r.ParquetFile,
+		"CompressionType": r.CompressionType,
+		"FileColumns":     r.FileColumns,
+		"FileContent":     r.FileContent,
 	}
 }
 func (r *Input) FromMap(values map[string]interface{}) error {
@@ -25,15 +30,22 @@ func (r *Input) FromMap(values map[string]interface{}) error {
 	if err != nil {
 		return err
 	}
-	r.JSONString, err = coerce.ToString(values["jsonstring"])
+
+	r.CompressionType, err = coerce.ToString(values["CompressionType"])
 	if err != nil {
 		return err
 	}
 
-	r.JSONSchema, err = coerce.ToString(values["jsonschema"])
+	r.FileColumns, err = coerce.ToArray(values["FileColumns"])
 	if err != nil {
 		return err
 	}
+
+	r.FileContent, err = coerce.ToArray(values["FileContent"])
+	if err != nil {
+		return err
+	}
+
 	return nil
 }
 
