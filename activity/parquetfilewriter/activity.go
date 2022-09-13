@@ -124,27 +124,8 @@ func (a *Activity) Eval(ctx activity.Context) (done bool, err error) {
 					ctx.Logger().Warnf("Row: %s", row)
 					ctx.Logger().Warnf("FileColumns: %s", FileColumns)
 					ctx.Logger().Errorf("Write file Error %s", err)
+					return false, err
 				}
-
-				/*
-					rec := make([]string, len(FileColumns))
-					for j := 0; j < len(FileColumns); j++ {
-						col := FileColumns[j].(map[string]interface{})
-						name := col["Name"].(string)
-						//ctype := col["Type"].(string)
-						rec[j], err = coerce.ToString(row[name])
-						if err != nil {
-							return false, err
-						}
-					}
-					ctx.Logger().Warnf("Writing record: %s", rec)
-
-					if err = pw.WriteString(rec); err != nil {
-						ctx.Logger().Warnf("Row: %s", row)
-						ctx.Logger().Warnf("FileColumns: %s", FileColumns)
-						ctx.Logger().Errorf("Write file Error %s", err)
-					}
-				*/
 			}
 		}
 		if err = pw.WriteStop(); err != nil {
@@ -155,7 +136,6 @@ func (a *Activity) Eval(ctx activity.Context) (done bool, err error) {
 
 	ctx.Logger().Infof("File completed %s", parquetFile)
 
-	//--
 	output := &Output{}
 	output.Result = "OK"
 
