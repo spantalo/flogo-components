@@ -3,8 +3,8 @@
   "author": "Stefano Pantaloni",
   "type": "flogo:activity",
   "version": "0.1.0",
-  "title": " csv file writer",
-  "description": " csvfilewriter",
+  "title": " CSV file writer",
+  "description": " CSV file writer",
   "homepage": "https://github.com/spantalo/flogo-components/tree/master/activity/ csvfilewriter",
   "settings": [
     {
@@ -18,7 +18,20 @@
         "name": "Separator",
         "appPropertySupport": true
       }
+    },
+    {
+      "name": "Compress",
+      "type": "boolean",
+      "description": "Compress file with gzip",
+      "required": true,
+      "value": false,
+      "display": {
+        "name": "Compress",
+        "appPropertySupport": true
+      }
     }
+
+
   ],
   "input": [
     {
@@ -31,12 +44,12 @@
       "type": "array",
       "display": {
         "name": "File Columns",
-        "description": "File Columns",
+        "description": "File Columns - define csv columns order",
         "type": "table",
         "mappable": false,
         "visible" : true,
         "inputSettingsOnly":true,
-        "schema": "{    \"$schema\": \"http:\/\/json-schema.org\/draft-04\/schema#\",    \"definitions\": {},    \"id\": \"http:\/\/example.com\/example.json\",    \"items\": {        \"id\": \"\/items\",        \"properties\": {            \"Name\": {                \"id\": \"\/items\/properties\/Name\",                \"type\": \"string\"            },            \"Type\": {                \"id\": \"\/items\/properties\/Type\",                \"type\": \"string\",                \"allowed\":[ \"BYTE_ARRAY\", \"INT32\", \"INT64\", \"BOOLEAN\", \"FLOAT\", \"DOUBLE\"                    ],                \"value\": \"BYTE_ARRAY\"            }        },        \"type\": \"object\"    },    \"type\": \"array\"}"
+        "schema": "{    \"$schema\": \"http:\/\/json-schema.org\/draft-04\/schema#\",    \"definitions\": {},    \"id\": \"http:\/\/example.com\/example.json\",    \"items\": {        \"id\": \"\/items\",        \"properties\": {            \"Name\": {                \"id\": \"\/items\/properties\/Name\",                \"type\": \"string\"     }       },        \"type\": \"object\"    },    \"type\": \"array\"}"
       }
     },
 
@@ -46,7 +59,7 @@
       "required": true,
       "display": {
         "name": "File Content",
-        "description": "File Content",
+        "description": "File Content schema, field names must match file column names",
         "type": "texteditor",
         "syntax": "json",
         "inputSettingsOnly":false,

@@ -2,7 +2,9 @@ package csvfilewriter
 
 import (
 	"bufio"
+	"compress/gzip"
 	"encoding/csv"
+	"io"
 	"log"
 	"os"
 
@@ -73,9 +75,15 @@ func (a *Activity) Eval(ctx activity.Context) (done bool, err error) {
 		defer f.Close()
 
 		// create new buffer
-		buffer := bufio.NewWriter(f)
+		var writer io.Writer
 
-		w := csv.NewWriter(buffer)
+		if a.settings.Compress {
+			writer = gzip.NewWriter(f)
+		} else {
+			writer = bufio.NewWriter(f)
+		}
+
+		w := csv.NewWriter(writer)
 
 		switch a.settings.Separator {
 		case "PIPE":

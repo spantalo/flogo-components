@@ -4,6 +4,7 @@ import "github.com/project-flogo/core/data/coerce"
 
 type Settings struct {
 	Separator string `md:"Separator,required"`
+	Compress  bool   `md:"Compress,required"`
 }
 
 type Input struct {

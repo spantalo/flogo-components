@@ -17,10 +17,9 @@ type Input struct {
 
 func (r *Input) ToMap() map[string]interface{} {
 	return map[string]interface{}{
-		"filename":        r.ParquetFile,
-		"CompressionType": r.CompressionType,
-		"FileColumns":     r.FileColumns,
-		"FileContent":     r.FileContent,
+		"filename":    r.ParquetFile,
+		"FileColumns": r.FileColumns,
+		"FileContent": r.FileContent,
 	}
 }
 

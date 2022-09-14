@@ -34,6 +34,7 @@ func New(ctx activity.InitContext) (activity.Activity, error) {
 		return nil, err
 	}
 	act := &Activity{}
+	act.settings = s
 	return act, nil
 }
 
