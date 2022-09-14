@@ -21,11 +21,11 @@ type HandlerSettings struct {
 }
 
 type PolledFile struct {
-	AbsPath string
-	Name    string
-	Size    int64
-	ModTime time.Time
-	IsDir   bool
+	path    string
+	name    string
+	size    int64
+	modtime time.Time
+	isdir   bool
 }
 
 var triggerMd = trigger.NewMetadata(&HandlerSettings{})
@@ -151,8 +151,9 @@ func (t *Trigger) scheduleOnce(handler trigger.Handler, settings *HandlerSetting
 	return nil
 }
 
-func WalkMatch(root, pattern string, t *Trigger) ([]PolledFile, error) {
-	var matches []PolledFile
+func WalkMatch(root, pattern string, t *Trigger) ([]map[string]interface{}, error) {
+	matches := []map[string]interface{}{}
+
 	err := filepath.Walk(root, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
 			//return err
@@ -168,13 +169,16 @@ func WalkMatch(root, pattern string, t *Trigger) ([]PolledFile, error) {
 		if matched, err := filepath.Match(pattern, path); err != nil {
 			return err
 		} else if matched {
-			matches = append(matches, PolledFile{
-				path,
-				info.Name(),
-				info.Size(),
-				info.ModTime(),
-				info.IsDir(),
-			})
+
+			el := map[string]interface{}{
+				"path":    path,
+				"name":    info.Name(),
+				"size":    info.Size(),
+				"modtime": info.ModTime(),
+				"isdir":   info.IsDir(),
+			}
+
+			matches = append(matches, el)
 		}
 		return nil
 	})
@@ -225,10 +229,7 @@ func (t *Trigger) scheduleRepeating(handler trigger.Handler, settings *HandlerSe
 			return
 		}
 
-		trgData := make(map[string]interface{})
-		trgData["result"] = matches
-
-		_, err = handler.Handle(context.Background(), trgData)
+		_, err = handler.Handle(context.Background(), matches)
 		if err != nil {
 			t.logger.Error("Error running handler: ", err.Error())
 		}

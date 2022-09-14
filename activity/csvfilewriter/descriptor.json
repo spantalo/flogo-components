@@ -1,28 +1,28 @@
 {
-  "name": "parquetfilewriter",
+  "name": " csvfilewriter",
   "author": "Stefano Pantaloni",
   "type": "flogo:activity",
   "version": "0.1.0",
-  "title": "Parquet file writer",
-  "description": "parquetfilewriter",
-  "homepage": "https://github.com/spantalo/flogo-components/tree/master/activity/parquetfilewriter",
+  "title": " csv file writer",
+  "description": " csvfilewriter",
+  "homepage": "https://github.com/spantalo/flogo-components/tree/master/activity/ csvfilewriter",
   "settings": [
     {
-      "name": "CompressionType",
+      "name": "Separator",
       "type": "string",
-      "allowed" : ["UNCOMPRESSED","SNAPPY","GZIP","LZ4","ZSTD"],
-      "value": "SNAPPY",
-      "description": "Compression used for the output file",
+      "allowed" : [",",";","TAB","|"],
+      "value": ",",
+      "description": "Separator used for the output file",
       "required": true,
       "display": {
-        "name": "CompressionType",
+        "name": "Separator",
         "appPropertySupport": true
       }
     }
   ],
   "input": [
     {
-      "name": "filename",
+      "name": "Filename",
       "required": true,
       "type": "string"
     },
@@ -46,7 +46,7 @@
       "required": true,
       "display": {
         "name": "File Content",
-        "description": "File Conent",
+        "description": "File Content",
         "type": "texteditor",
         "syntax": "json",
         "inputSettingsOnly":false,
@@ -59,9 +59,5 @@
 
   ],
   "output": [
-    {
-      "name": "result",
-      "type": "string"
-    }
   ]
 }

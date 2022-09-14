@@ -3,6 +3,8 @@ package parquetfilewriter
 import (
 	"github.com/project-flogo/core/activity"
 	"github.com/project-flogo/core/data/coerce"
+	"github.com/project-flogo/core/data/metadata"
+
 	"github.com/xitongsys/parquet-go-source/local"
 	"github.com/xitongsys/parquet-go/parquet"
 	"github.com/xitongsys/parquet-go/writer"
@@ -10,13 +12,14 @@ import (
 
 // Activity is a Parquet writer
 type Activity struct {
+	settings *Settings
 }
 
 func init() {
 	_ = activity.Register(&Activity{}, New)
 }
 
-var activityMd = activity.ToMetadata(&Input{}, &Output{})
+var activityMd = activity.ToMetadata(&Settings{}, &Input{}, &Output{})
 
 // Metadata returns the activity's metadata
 func (a *Activity) Metadata() *activity.Metadata {
@@ -25,6 +28,11 @@ func (a *Activity) Metadata() *activity.Metadata {
 
 // New create a new  activity
 func New(ctx activity.InitContext) (activity.Activity, error) {
+	s := &Settings{}
+	err := metadata.MapToStruct(ctx.Settings(), s, true)
+	if err != nil {
+		return nil, err
+	}
 	act := &Activity{}
 	return act, nil
 }
@@ -42,7 +50,8 @@ func (a *Activity) Eval(ctx activity.Context) (done bool, err error) {
 	parquetFile := in.ParquetFile
 	FileColumns := in.FileColumns
 	FileContent := in.FileContent
-	CompressionType := in.CompressionType
+
+	CompressionType := a.settings.CompressionType
 
 	ctx.Logger().Infof("Processing file: %s", parquetFile)
 

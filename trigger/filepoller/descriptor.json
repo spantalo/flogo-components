@@ -2,7 +2,7 @@
   "name": "filepoller",
   "author": "Stefano Pantaloni",
   "type": "flogo:trigger",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "title": "FilePoller",
   "description": "Simple File poller trigger",
   "homepage": "https://github.com/spantalo/flogo-components/tree/master/trigger/filepoller",
@@ -32,11 +32,11 @@
       }
     ]
   },
-  "output": [
-    {
-      "name": "result",
-      "type": "object" 
-
-    }
-  ]
+ 
+"outputs": [
+  {
+    "name": "result",
+    "type": "array"
+  }
+]
 }

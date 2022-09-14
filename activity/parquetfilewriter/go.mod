@@ -3,6 +3,7 @@ module github.com/spantalo/flogo-components/activity/parquetfilewriter
 go 1.14
 
 require (
+	github.com/jszwec/csvutil v1.7.1 // indirect
 	github.com/project-flogo/core v1.6.2
 	github.com/stretchr/testify v1.8.0
 	github.com/xitongsys/parquet-go v1.6.2
