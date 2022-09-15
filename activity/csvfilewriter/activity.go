@@ -78,12 +78,18 @@ func (a *Activity) Eval(ctx activity.Context) (done bool, err error) {
 		var writer io.Writer
 
 		if a.settings.Compress {
-			writer = gzip.NewWriter(f)
+			awriter := gzip.NewWriter(f)
+			defer awriter.Close()
+			writer = awriter
+
 		} else {
-			writer = bufio.NewWriter(f)
+			awriter := bufio.NewWriter(f)
+			defer awriter.Flush()
+			writer = awriter
 		}
 
 		w := csv.NewWriter(writer)
+		defer w.Flush()
 
 		switch a.settings.Separator {
 		case "PIPE":
@@ -129,7 +135,6 @@ func (a *Activity) Eval(ctx activity.Context) (done bool, err error) {
 
 		//--
 
-		w.Flush()
 		if err := w.Error(); err != nil {
 			ctx.Logger().Errorf("Write file Error %s", err)
 			return false, err

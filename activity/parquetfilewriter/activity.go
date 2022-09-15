@@ -72,16 +72,19 @@ func (a *Activity) Eval(ctx activity.Context) (done bool, err error) {
 
 		//creazione del file
 		fw, err := local.NewLocalFileWriter(parquetFile)
+
 		if err != nil {
 			ctx.Logger().Errorf("Can't create file %s", err)
 			return false, err
 		}
+		defer fw.Close()
 
 		pw, err := writer.NewCSVWriter(md, fw, 4)
 		if err != nil {
 			ctx.Logger().Errorf("Can't create file writer %s", err)
 			return false, err
 		}
+		defer pw.Flush(true)
 
 		switch CompressionType {
 		case "UNCOMPRESSED":
@@ -141,7 +144,6 @@ func (a *Activity) Eval(ctx activity.Context) (done bool, err error) {
 		if err = pw.WriteStop(); err != nil {
 			ctx.Logger().Errorf("Close file Error %s", err)
 		}
-		fw.Close()
 	}
 
 	ctx.Logger().Infof("File completed %s", parquetFile)
