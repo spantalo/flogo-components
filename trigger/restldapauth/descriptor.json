@@ -29,34 +29,50 @@
       "description": "The path to PEM encoded server key"
     },
     {
-      "name": "URL",
+      "name": "LDAPURL",
       "type": "string",
       "required" : true,
-      "description": "The LDAP URL"
+      "description": "The LDAP URL",      
+      "display": {
+        "appPropertySupport": true
+      }
     },
     {
       "name": "BindPassword",
       "type": "string",
       "required" : true,
-      "description": "The LDAP BindPassword"
+      "description": "The LDAP BindPassword",      
+      "display": {
+        "appPropertySupport": true,
+        "type": "password"
+      }
     },
     {
       "name": "BindDN",
       "type": "string",
       "required" : true,
-      "description": "The LDAP BindDN"
+      "description": "The LDAP BindDN",      
+      "display": {
+        "appPropertySupport": true
+      }
     },
     {
       "name": "BaseDN",
       "type": "string",
       "required" : true,
-      "description": "The LDAP BaseDN"
+      "description": "The LDAP BaseDN",      
+      "display": {
+        "appPropertySupport": true
+      }
     },
     {
       "name": "Filter",
       "type": "string",
       "required" : true,
-      "description": "The LDAP Filter"
+      "description": "The LDAP Filter",      
+      "display": {
+        "appPropertySupport": true
+      }
     }
   ],
   "output": [

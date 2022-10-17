@@ -9,11 +9,11 @@ type Settings struct {
 	EnableTLS    bool   `md:"enableTLS"`             // Enable TLS on the server
 	CertFile     string `md:"certFile"`              // The path to PEM encoded server certificate
 	KeyFile      string `md:"keyFile"`               // The path to PEM encoded server key
-	URL          string `md:"url,required"`          // The LDAP URL
-	BindPassword string `md:"bindpassword,required"` // The LDAP BindPassword
-	BindDN       string `md:"binddn,required"`       // The LDAP BindDN
-	BaseDN       string `md:"basedn,required"`       // The LDAP BaseDN
-	Filter       string `md:"filter,required"`       // The LDAP Filter
+	LDAPURL      string `md:"LDAPURL,required"`      // The LDAP URL
+	BindPassword string `md:"BindPassword,required"` // The LDAP BindPassword
+	BindDN       string `md:"BindDN,required"`       // The LDAP BindDN
+	BaseDN       string `md:"BaseDN,required"`       // The LDAP BaseDN
+	Filter       string `md:"Filter,required"`       // The LDAP Filter
 
 }
 
