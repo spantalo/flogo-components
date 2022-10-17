@@ -157,7 +157,7 @@ func newActionHandler(rt *Trigger, method string, handler trigger.Handler) httpr
 		logger.Debugf("Received request for id '%s' starting LDAP Authentication", rt.id)
 
 		//LDAP Authentication
-		info, err := ldap.New(&ldapconf).Authenticate(r.Context(), r)
+		_, err := ldap.New(&ldapconf).Authenticate(r.Context(), r)
 		if err != nil {
 			logger.Warnf("Error during LDAP authentication: %s", err.Error())
 			http.Error(w, err.Error(), http.StatusForbidden)
