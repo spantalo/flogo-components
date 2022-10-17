@@ -5,20 +5,21 @@ import (
 )
 
 type Settings struct {
-	Port      int    `md:"port,required"` // The port to listen on
-	EnableTLS bool   `md:"enableTLS"`     // Enable TLS on the server
-	CertFile  string `md:"certFile"`      // The path to PEM encoded server certificate
-	KeyFile   string `md:"keyFile"`       // The path to PEM encoded server key
+	Port         int    `md:"port,required"`         // The port to listen on
+	EnableTLS    bool   `md:"enableTLS"`             // Enable TLS on the server
+	CertFile     string `md:"certFile"`              // The path to PEM encoded server certificate
+	KeyFile      string `md:"keyFile"`               // The path to PEM encoded server key
+	URL          string `md:"url,required"`          // The LDAP URL
+	BindPassword string `md:"bindpassword,required"` // The LDAP BindPassword
+	BindDN       string `md:"binddn,required"`       // The LDAP BindDN
+	BaseDN       string `md:"basedn,required"`       // The LDAP BaseDN
+	Filter       string `md:"filter,required"`       // The LDAP Filter
+
 }
 
 type HandlerSettings struct {
-	Method       string `md:"method,required,allowed(GET,POST,PUT,PATCH,DELETE)"` // The HTTP method (ie. GET,POST,PUT,PATCH or DELETE)
-	Path         string `md:"path,required"`                                      // The resource path
-	URL          string `md:"url,required"`                                       // The LDAP URL
-	BindPassword string `md:"bindpassword,required"`                              // The LDAP BindPassword
-	BindDN       string `md:"binddn,required"`                                    // The LDAP BindDN
-	BaseDN       string `md:"basedn,required"`                                    // The LDAP BaseDN
-	Filter       string `md:"filter,required"`                                    // The LDAP Filter
+	Method string `md:"method,required,allowed(GET,POST,PUT,PATCH,DELETE)"` // The HTTP method (ie. GET,POST,PUT,PATCH or DELETE)
+	Path   string `md:"path,required"`                                      // The resource path
 
 }
 

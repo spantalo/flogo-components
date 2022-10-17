@@ -27,6 +27,36 @@
       "name": "keyFile",
       "type":"string",
       "description": "The path to PEM encoded server key"
+    },
+    {
+      "name": "URL",
+      "type": "string",
+      "required" : true,
+      "description": "The LDAP URL"
+    },
+    {
+      "name": "BindPassword",
+      "type": "string",
+      "required" : true,
+      "description": "The LDAP BindPassword"
+    },
+    {
+      "name": "BindDN",
+      "type": "string",
+      "required" : true,
+      "description": "The LDAP BindDN"
+    },
+    {
+      "name": "BaseDN",
+      "type": "string",
+      "required" : true,
+      "description": "The LDAP BaseDN"
+    },
+    {
+      "name": "Filter",
+      "type": "string",
+      "required" : true,
+      "description": "The LDAP Filter"
     }
   ],
   "output": [
@@ -92,36 +122,6 @@
         "type": "string",
         "required" : true,
         "description": "The resource path"
-      },
-      {
-        "name": "URL",
-        "type": "string",
-        "required" : true,
-        "description": "The LDAP URL"
-      },
-      {
-        "name": "BindPassword",
-        "type": "string",
-        "required" : true,
-        "description": "The LDAP BindPassword"
-      },
-      {
-        "name": "BindDN",
-        "type": "string",
-        "required" : true,
-        "description": "The LDAP BindDN"
-      },
-      {
-        "name": "BaseDN",
-        "type": "string",
-        "required" : true,
-        "description": "The LDAP BaseDN"
-      },
-      {
-        "name": "Filter",
-        "type": "string",
-        "required" : true,
-        "description": "The LDAP Filter"
       }
     ]
   }

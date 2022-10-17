@@ -14,24 +14,24 @@ flogo install github.com/spantalo/flogo-components/trigger/restldapauth
 ## Configuration
 
 ### Settings:
-| Name      | Type   | Description
-|:---       | :---   | :---       
-| port      | int    | The port to listen on - **REQUIRED**
-| enableTLS | bool   | Enable TLS on the server
-| certFile  | string | The path to PEM encoded server certificate
-| keyFile   | string | The path to PEM encoded server key
-
+| Name        | Type   | Description
+|:---         | :---   | :---       
+| port        | int    | The port to listen on - **REQUIRED**
+| enableTLS   | bool   | Enable TLS on the server
+| certFile    | string | The path to PEM encoded server certificate
+| keyFile     | string | The path to PEM encoded server key
+| URL         | string | The LDAP URL - **REQUIRED**
+| BindPassword| string | The LDAP BindPassword - **REQUIRED**
+| BindDN      | string | The LDAP BindDN - **REQUIRED**
+| BaseDN      | string | The LDAP BaseDN - **REQUIRED**
+| Filter      | string | The LDAP Filter - **REQUIRED**
 
 ### Handler Settings:
 | Name        | Type   | Description
 |:---         | :---   | :---          
 | method      | string | The HTTP method (ie. GET,POST,PUT,PATCH or DELETE) - **REQUIRED**
 | path        | string | The resource path - **REQUIRED**
-| URL         | string | The LDAP URL - **REQUIRED**
-| BindPassword| string | The LDAP BindPassword - **REQUIRED**
-| BindDN      | string | The LDAP BindDN - **REQUIRED**
-| BaseDN      | string | The LDAP BaseDN - **REQUIRED**
-| Filter      | string | The LDAP Filter - **REQUIRED**
+
 
 ### Output:
 | Name        | Type   | Description

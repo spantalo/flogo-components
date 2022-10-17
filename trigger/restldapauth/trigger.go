@@ -84,12 +84,6 @@ func (t *Trigger) Initialize(ctx trigger.InitContext) error {
 		method := s.Method
 		path := s.Path
 
-		ldapconf.URL = s.URL
-		ldapconf.BindPassword = s.BindPassword
-		ldapconf.BindDN = s.BindDN
-		ldapconf.BaseDN = s.BaseDN
-		ldapconf.Filter = s.Filter
-
 		t.logger.Debugf("Registering handler [%s: %s]", method, path)
 
 		if _, ok := pathMap[path]; !ok {
@@ -118,6 +112,14 @@ func (t *Trigger) Initialize(ctx trigger.InitContext) error {
 	//t.serverInstanceID = fmt.Sprintf("%x", md5.Sum([]byte(hostname+addr)))
 
 	t.server = server
+
+	// Configuring LDAP
+
+	ldapconf.URL = t.settings.URL
+	ldapconf.BindPassword = t.settings.BindPassword
+	ldapconf.BindDN = t.settings.BindDN
+	ldapconf.BaseDN = t.settings.BaseDN
+	ldapconf.Filter = t.settings.Filter
 
 	return nil
 }
