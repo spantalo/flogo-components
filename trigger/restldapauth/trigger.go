@@ -115,7 +115,7 @@ func (t *Trigger) Initialize(ctx trigger.InitContext) error {
 
 	// Configuring LDAP
 
-	ldapconf.URL = t.settings.URL
+	ldapconf.URL = t.settings.LDAPURL
 	ldapconf.BindPassword = t.settings.BindPassword
 	ldapconf.BindDN = t.settings.BindDN
 	ldapconf.BaseDN = t.settings.BaseDN
