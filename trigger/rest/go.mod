@@ -1,4 +1,4 @@
-module github.com/spantalo/flogo-components/trigger/restldapauth
+module github.com/project-flogo/contrib/trigger/rest
 
 require (
 	github.com/julienschmidt/httprouter v1.3.0
